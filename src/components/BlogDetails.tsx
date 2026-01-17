@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchBlogById } from "../api/blogs"; // Check path (../../api/blogs if needed)
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "../components/ui/badge";
+import { Separator } from "../components/ui/separator";
+import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
 
 interface BlogDetailProps {
   blogId: string | null;
