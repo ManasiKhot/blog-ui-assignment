@@ -1,158 +1,87 @@
-# CA Monk - Blog Application Assignment
+# 📱 Blog UI Assignment (Responsive)
 
-Welcome to the CA Monk Blog Application assignment! This project tests your ability to build a modern React application with state management, styling, and component libraries.
+A modern, responsive blog application built for the CA Monk assignment. This project demonstrates a master-detail layout, server-state management with TanStack Query, and a fully functional CRUD simulation using JSON Server.
 
-## Installation
+## 🚀 Tech Stack
 
-### Prerequisites
-- Node.js (v18 or higher)
-- Git
-- React.js knowledge
-- Familiarity with TanStack Query, Tailwind CSS, and shadcn/ui.
+- **Frontend:** React (Vite), TypeScript, Tailwind CSS
+- **UI Library:** ShadCN UI (Radix Primitives)
+- **State Management:** TanStack Query (React Query)
+- **Routing/Icons:** Lucide React
+- **Backend Simulation:** JSON Server
 
-### Setup Instructions
+---
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd camonk-interview
-   ```
+## 🛠️ How to Run Locally
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+This project requires **two terminals** running simultaneously (one for the React App, one for the Mock API).
 
-3. **Install required libraries for the assignment** , ie, TanStack Query, Tailwind CSS, and  shadcn/ui
-4. **Start the JSON Server (Backend API)**
-   ```bash
-   npm run server
-   ```
-   The API will run on `http://localhost:3001`
+### 1. Clone & Install
+```bash
+git clone <your-repo-url>
+cd blog-ui-assignment
+npm install
 
-5. **Start the Development Server (in a new terminal)**
-   ```bash
-   npm run dev
-   ```
-   The app will run on `http://localhost:5173`
+2. Start the Backend (Terminal 1)
+This runs the JSON Server on port 3000 to serve the db.json file.
 
-## Assignment Tasks
+Bash
 
-You are required to build a blog application with the following features:
+npx json-server --watch db.json --port 3000
 
-### Required Technologies
-- ✅ **TanStack Query** - For server state management and data fetching
-  - 📚 [Documentation](https://tanstack.com/query/latest)
-- ✅ **Tailwind CSS** - For styling
-  - 📚 [Documentation](https://tailwindcss.com/docs)
-- ✅ **shadcn/ui** - For UI components
-  - 📚 [Documentation](https://ui.shadcn.com/)
+3. Start the Frontend (Terminal 2)
+This runs the Vite development server.
 
-## UI Reference
+Bash
 
-Here's a reference design for the blog application layout:
+npm run dev
+Open http://localhost:5173 in your browser to view the app.
 
-![Blog Reference](image.png)
+📸 Development Journey (Commit by Commit)
+Commit 1: Project Setup & ShadCN Integration
+Initial setup with Vite, Tailwind, and ShadCN components configuration. <img src="./screenshots/commit-1-setup.png" alt="Project Setup" width="700" />
 
-**Left Panel:** Blog list view showing blog cards with category, title, and description  
-**Right Panel:** Blog detail view displaying cover image, full content
+Commit 2: Data Fetching (TanStack Query)
+Implemented useQuery to fetch blogs from json-server. Handles Loading and Error states gracefully. <img src="./screenshots/commit-2-data-fetching.png" alt="Data Fetching" width="700" />
 
-UI IMAGE - ![UI-refernece](ui.jpeg)
+Commit 3: Responsiveness (Mobile Drawer)
+Desktop: Split-screen layout (List | Details).
 
-> **Note:** This is just a reference design. Your implementation does not have to look exactly like this. 
+Mobile: The List panel moves to a ShadCN Bottom Drawer for better UX.
 
-For the blog content, use plain text — no need to use HTML-formatted text.
+<img src="./screenshots/commit-3-responsiveness.png" alt="Mobile Drawer" width="300" />
 
-### Tasks to Complete
+Commit 4: Blog List UI
+Enhanced the list items with Card and Badge components, adding proper spacing and hover effects. <img src="./screenshots/commit-4-list-ui.png" alt="Blog List UI" width="700" />
 
-#### 1. **Get All Blogs**
-- Create a component to display all blogs using `GET /blogs`
-- Use TanStack Query for data fetching
-- Handle loading and error states
+Commit 5: Blog Detail View
+Professional article layout with cover image, author avatar, separator lines, and typography styling. <img src="./screenshots/commit-5-detail-view.png" alt="Blog Detail View" width="700" />
 
-#### 2. **Get Blog by ID**
-- Implement single blog view using `GET /blogs/:id`
-- Use TanStack Query for data fetching
+Commit 6: Create Blog Form
+A Modal (Dialog) form to add new posts. Uses useMutation to update the server and automatically invalidate queries to refresh the list instantly. <img src="./screenshots/commit-6-create-form.png" alt="Create Blog Form" width="700" />
 
-#### 3. **Create a New Blog**
-- Build a form to create a new blog using `POST /blogs`
-- Invalidate queries after successful creation
+Commit 7: Header & Footer (Final Layout)
+Added a clean Header with a "Create" action button and a standard Footer with copyright info. <img src="./screenshots/commit-7-final.png" alt="Final App Layout" width="700" />
 
-> Organize your components in a suitable file structure within the `src/` directory.
+📂 Project Structure
+Plaintext
 
-### API Endpoints
-
-The JSON Server provides the following endpoints:
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/blogs` | Get all blogs |
-| GET | `/blogs/:id` | Get a specific blog by ID |
-| POST | `/blogs` | Create a new blog |
-
-### Evaluation Criteria
-
-Your submission will be evaluated on:
-- ✅ Correct implementation of TanStack Query hooks
-- ✅ Proper use of Tailwind CSS for styling
-- ✅ Integration of shadcn/ui components
-- ✅ Code organization and structure
-- ✅ Error handling and loading states
-- ✅ Responsive design []
-- ✅ User experience and UI polish
+src/
+├── api/             # API calls (axios/fetch wrappers)
+├── components/      # React components (BlogList, BlogDetail, Header, Footer)
+│   └── ui/          # ShadCN UI components (Button, Card, Drawer, Dialog...)
+├── App.tsx          # Main layout logic
+├── main.tsx         # App entry point & QueryClientProvider
+└── types.ts         # TypeScript interfaces
+📝 License
+This project is submitted as an assignment for CA Monk.
 
 
+### Step 3: Save and Submit
+1.  Press `Ctrl + S` (Windows) or `Cmd + S` (Mac) to save the file.
+2.  Run your final git commands to push this file to GitHub:
 
-## Sample Blog Object
-
-```json
-{
-  "id": 1,
-  "title": "Future of Fintech",
-  "category": ["FINANCE", "TECH"],
-  "description": "Exploring how AI and blockchain are reshaping financial services",
-  "date": "2026-01-11T09:12:45.120Z",
-  "coverImage": "https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg",
-  "content": "Full blog content..."
-}
-```
-
-description: A short summary of the blog  
-content: The full content of the blog
-
-## Tips
-
-- Set up TanStack Query's `QueryClientProvider` in your app root
-- Configure Tailwind CSS properly in your config files
-- Use shadcn components like `Card`, `Button`, `Input`, etc.
-- Handle loading states with skeletons
-- Implement proper error boundaries
-- Consider using React Router for navigation (optional)
-
-## Submission
-
-Once you've completed the assignment:
-1. Ensure all tasks are working correctly
-2. Commit your changes with clear commit messages
-3. Push to your repository
-4. Share the repository link for review in the google form provided
-
-## FAQ
-
-**Do I need to deploy the code?**  
-No. Simply clone the repository, commit and push your changes, and share the repository link via the Google Form.
-
-**Is it mandatory to use TypeScript and TanStack Query?**  
-Yes, using both TypeScript and TanStack Query is compulsory for this assignment.
-
-**Is using JSON Server mandatory, or can I create my own server?**  
-Using JSON Server is mandatory. Please use the provided JSON Server setup rather than creating your own backend.
-
-**What should I use for styling?**  
-Use **Tailwind CSS** and **shadcn/ui** for styling. You are expected to install, configure, and use both Tailwind CSS and shadcn/ui components in your implementation.
-
-**Have more questions?**  
-If you have any additional doubts, feel free to reach out at: `developer@camonk.com`.
-
-
-Good luck! 🚀
+```bash
+git add .
+git commit -m "docs: Add README with screenshots"
+git push
